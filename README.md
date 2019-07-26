@@ -108,3 +108,5 @@ except:
 
 beautifulsoup4 va nous permete d'exploiter la page html scraper
 
+https://python-django.dev/page-beautifulsoup-html-parser-python-library-xml
+
