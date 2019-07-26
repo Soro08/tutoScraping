@@ -211,7 +211,7 @@ def scrap(request):
 
 		mydata.append(resultat)
 
-	data = json.dumps(mydata)
+	data = mydata
 	
 	return JsonResponse(data, safe=False) # retourn du json
 	
