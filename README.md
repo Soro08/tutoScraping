@@ -1,6 +1,19 @@
 # tutoScraping
 Comment scraper un site web avec python 3
 
+### c'est quoi le scrapping ?
+
+Scraper consiste à récuperer les données d'un site internet sans l'autorisation du propriétaire.
+
+### A qu'elle moment il faut scraper un site?
+
+Lorsque nous avons besoin des données d'un site et nous n'avons pas accès à l4API du site alors on fait recoure au scrapping :sunglasses:
+
+
+
+
+** En cas de soucis Merci de créer des issues et je vais complèter le tutorial **
+
 # I- Utilitie
 
 Pour le scraping vous avez plusieur modules. 
@@ -91,4 +104,7 @@ except:
 
 ```
 
+# Ok. bs4 on jette un coup d'oeil
+
+beautifulsoup4 va nous permete d'exploiter la page html scraper
 
