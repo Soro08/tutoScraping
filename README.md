@@ -108,5 +108,43 @@ except:
 
 beautifulsoup4 va nous permete d'exploiter la page html scraper
 
-https://python-django.dev/page-beautifulsoup-html-parser-python-library-xml
+[documentation](https://python-django.dev/page-beautifulsoup-html-parser-python-library-xml)
+
+# Passons au chose serieuse
+On va scraper le site de sport **match en direct** :scream_cat:
+
+
+```bash
+
+from requests import get
+from bs4 import BeautifulSoup
+import re
+url = 'https://www.matchendirect.fr/'
+response = get(url)
+html_soup = BeautifulSoup(response.text, 'html.parser')
+
+table = html_soup.find('div', attrs = {'id':'livescore'}) 
+compt = 1
+for row in table.findAll('div', attrs = {'class':'panel panel-info'}): 
+ 
+
+    a_desc = row.find('h3', attrs = {'class':'panel-title'}).get_text() 
+
+    for el in row.findAll('tr'):
+        heure = el.find('td', attrs = {'class':'lm1'}).get_text() 
+        eqA = el.find('span', attrs = {'class':'lm3_eq1'}).get_text()
+        eqB =  el.find('span', attrs = {'class':'lm3_eq2'}).get_text()
+
+        scors =  el.find('span', attrs = {'class':'lm3_score'}).get_text()
+        print(heure, eqA, "-" ,scors ,"-", eqB)
+
+
+    compt += 1
+
+print(response.status_code)
+
+
+```
+
+
 
