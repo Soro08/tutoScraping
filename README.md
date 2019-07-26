@@ -133,7 +133,7 @@ On va scraper le site de sport **match en direct** :scream_cat:
 
 from requests import get
 from bs4 import BeautifulSoup
-import re
+
 url = 'https://www.matchendirect.fr/'
 response = get(url)
 html_soup = BeautifulSoup(response.text, 'html.parser')
@@ -158,6 +158,63 @@ for row in table.findAll('div', attrs = {'class':'panel panel-info'}):
 
 print(response.status_code)
 
+
+```
+
+
+# ET SI ON PASSAIT A DJANGO 
+
+dans mon fichier views.py j'ajoute le code suisvant:
+
+
+
+```bash
+
+from django.http import JsonResponse
+import json
+
+from requests import get
+from bs4 import BeautifulSoup
+
+
+
+def myview(request):
+
+	url = 'https://www.matchendirect.fr/'
+	response = get(url)
+	html_soup = BeautifulSoup(response.text, 'html.parser')
+
+	table = html_soup.find('div', attrs = {'id':'livescore'}) 
+	compt = 1
+
+	mydata = []
+
+
+	for row in table.findAll('div', attrs = {'class':'panel panel-info'}): 
+
+
+	    a_desc = row.find('h3', attrs = {'class':'panel-title'}).get_text() 
+
+	    for el in row.findAll('tr'):
+
+		resultat = {}
+		heure = el.find('td', attrs = {'class':'lm1'}).get_text() 
+		eqA = el.find('span', attrs = {'class':'lm3_eq1'}).get_text()
+		eqB =  el.find('span', attrs = {'class':'lm3_eq2'}).get_text()
+
+		scors =  el.find('span', attrs = {'class':'lm3_score'}).get_text()
+
+		resultat['heure'] = heure
+		resultat['eqa'] = eqA
+		resultat['eqb'] = eqB
+		resultat['scors'] = scors
+
+		mydata.append(resultat)
+
+	data = json.dumps(mydata)
+	
+	return JsonResponse(data, safe=False) # retourn du json
+	
 
 ```
 
