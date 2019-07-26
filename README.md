@@ -16,6 +16,21 @@ Lorsque nous avons besoin des données d'un site et nous n'avons pas accès à l
 
 # I- Utilitie
 
+###Vérifier que python est installé 
+:smile_cat:
+
+```bash
+$ python
+```
+##Setup 2: créer un environnement virtuel
+```bash
+$ python -m venv venv
+```
+##Setup 3: activer l'environnement virtuel
+```bash
+$ source venv/bin/activate
+```
+
 Pour le scraping vous avez plusieur modules. 
 Ce tutorial visant la convergence en Django, utilisera des librairie simple pour faciliter le deploiement et le scraping instatané.
 
