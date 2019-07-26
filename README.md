@@ -178,7 +178,7 @@ from bs4 import BeautifulSoup
 
 
 
-def myview(request):
+def scrap(request):
 
 	url = 'https://www.matchendirect.fr/'
 	response = get(url)
