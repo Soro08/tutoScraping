@@ -219,4 +219,12 @@ def scrap(request):
 ```
 
 
+# Ajouter le static dir au seting de django
 
+```bash
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+```
