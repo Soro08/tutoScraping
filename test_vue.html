@@ -19,12 +19,43 @@
 			</li>
 			
 		</ul>
+
+		<button @click="start">Lancer le décompte</button>
+		<div id="bip" class="display"> #{ duree } </div>
 	</div>
+	
+
+<script>
+// var counter = 10;
+// var intervalId = null;
+// function finish() {
+// 	counter = 10;
+//   clearInterval(intervalId);
+
+//   document.getElementById("bip").innerHTML = "TERMINE!";	
+// }
+// function bip() {
+//     counter--;
+//     if(counter == 0) finish();
+//     else {	
+//         document.getElementById("bip").innerHTML = counter + " secondes restantes";
+//     }	
+// }
+// function start(){
+
+//   intervalId = setInterval(bip, 1000);
+// }	
+</script>
 	
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- Moment.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<!-- moment-duration-format plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/1.3.0/moment-duration-format.min.js"></script>
 
 
 <script type="text/javascript">
@@ -34,7 +65,10 @@ const app = new Vue({
 	   data: {
 	    message: 'Hello Vue!',
 	    result : [],
-	    base_usl : "https://jsonplaceholder.typicode.com/todos"
+	    base_usl : "https://jsonplaceholder.typicode.com/todos",
+	    counter : 3600,
+	    intervalId : null,
+	    duree: "10",
 	  },
     delimiters: ["#{", "}"],
     mounted: function() {
@@ -42,6 +76,29 @@ const app = new Vue({
        
     },
     methods: {
+
+    	finish: function(){
+    		this.counter = 3600;
+  			clearInterval(this.intervalId);
+  			this.duree = "Terminer"
+    	},
+
+    	bip: function(){
+    		this.counter--;
+		    if(this.counter == 0){
+		    	this.finish();
+		    } 
+		    else {	
+		    	var duration = moment.duration(this.counter, 'seconds');
+				var formatted = duration.format("hh:mm:ss");
+		        this.duree = formatted ;
+		    }	
+    	},
+
+    	start: function(){
+    		console.log("start")
+    		this.intervalId = setInterval(this.bip, 1000);
+    	},
 
         get: function(){
         	axios.defaults.xsrfCookieName = 'csrftoken'
@@ -51,9 +108,9 @@ const app = new Vue({
             axios.get(this.base_usl)
                 .then(response => {
                     resultat = response.data
-                    this.result = resultat
+                    //this.result = resultat
                     console.log('getting..')
-                    console.log(resultat)
+                    //console.log(resultat)
                     //this.contentA = myshop[0].fields.code_depart
 
 
@@ -70,11 +127,15 @@ const app = new Vue({
 });
 
 
-$(document).ready(function() {
-	setInterval( function(){
-		app.get()
-	}, 1000);
-});
+// $(document).ready(function() {
+// 	setInterval( function(){
+// 		app.get()
+// 	}, 1000);
+// });
+// var seconds = 3820;
+// var duration = moment.duration(seconds, 'seconds');
+// var formatted = duration.format("hh:mm:ss");
+// console.log(formatted);
 
 </script>
 
