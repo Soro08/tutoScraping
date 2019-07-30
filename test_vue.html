@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+</head>
+<body>
+	<div id="app">
+		<ul>
+			
+			<li v-for="item in result">
+				#{ item.title }
+			</li>
+			
+		</ul>
+	</div>
+	
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script type="text/javascript">
+
+const app = new Vue({
+    el: "#app",
+	   data: {
+	    message: 'Hello Vue!',
+	    result : [],
+	    base_usl : "https://jsonplaceholder.typicode.com/todos"
+	  },
+    delimiters: ["#{", "}"],
+    mounted: function() {
+       this.get()
+       
+    },
+    methods: {
+
+        get: function(){
+        	axios.defaults.xsrfCookieName = 'csrftoken'
+            axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+
+            axios.get(this.base_usl)
+                .then(response => {
+                    resultat = response.data
+                    this.result = resultat
+                    console.log('getting..')
+                    console.log(resultat)
+                    //this.contentA = myshop[0].fields.code_depart
+
+
+                    //console.log(response.data)
+                    //this.loading = false;
+                })
+                .catch((err) => {
+                    //this.loading = false;
+                    console.log(err);
+                })
+        }
+        
+    }
+});
+
+
+$(document).ready(function() {
+	setInterval( function(){
+		app.get()
+	}, 1000);
+});
+
+</script>
+
+
+
+</body>
+</html>
