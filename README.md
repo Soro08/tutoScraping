@@ -235,3 +235,12 @@ STATICFILES_DIRS = [
 #### 1 . - https://bitdownloader.com/download?video=https://www.youtube.com/watch?v=pz6oKbodpGU
 
 #### 2 . - https://youtubemp4.to/fr/
+
+
+##### Api faible
+
+https://www.4kdownload.com/fr/howto/howto-download-youtube-1080p-or-720p
+
+https://www.4kdownload.com/taskio/parse/?media_url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DW0yPHHLedls
+
+https://www.4kdownload.com/taskio/tasks/?task_id=81f1bf15-f884-45e8-a577-471fb6ed3d03
