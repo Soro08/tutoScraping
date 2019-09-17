@@ -228,3 +228,10 @@ STATICFILES_DIRS = [
 ]
 
 ```
+
+
+# La cible youtube download
+
+## 1 . - https://bitdownloader.com/download?video=https://www.youtube.com/watch?v=pz6oKbodpGU
+
+## 2 . - https://youtubemp4.to/fr/
